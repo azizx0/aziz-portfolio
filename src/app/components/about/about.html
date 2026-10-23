@@ -1,0 +1,62 @@
+<section id="about" class="about-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-tag">
+        <span>👤</span>
+        <span>{{ i18n.ui().about.badge }}</span>
+      </div>
+      <h2 class="section-title gradient-text">{{ i18n.ui().about.title }}</h2>
+      <p class="section-subtitle">{{ i18n.ui().about.subtitle }}</p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="about-grid">
+      <!-- Profile narrative -->
+      <div class="bio-panel glass-panel">
+        <div class="bio-header">
+          <div class="bio-avatar">
+            <span class="avatar-letters mono">MAL</span>
+          </div>
+          <div class="bio-intro">
+            <h3 class="bio-fullname">{{ i18n.personal.fullName }}</h3>
+            <span class="bio-role mono">{{ i18n.isFrench() ? i18n.personal.titleFr : i18n.personal.titleEn }}</span>
+            <span class="bio-sub mono">ESPRIT &bull; {{ i18n.personal.location }}</span>
+          </div>
+        </div>
+
+        <div class="bio-body">
+          <p class="bio-paragraph">{{ i18n.ui().about.p1 }}</p>
+          <p class="bio-paragraph">{{ i18n.ui().about.p2 }}</p>
+        </div>
+
+        <!-- Focus tags -->
+        <div class="bio-tags">
+          <span class="bio-tag mono">#FullStack</span>
+          <span class="bio-tag mono">#DevOps</span>
+          <span class="bio-tag mono">#Cloud</span>
+          <span class="bio-tag mono">#Microservices</span>
+          <span class="bio-tag mono">#ESPRIT</span>
+          <span class="bio-tag mono">#PFE2025</span>
+        </div>
+      </div>
+
+      <!-- Highlights / Pillars Column -->
+      <div class="highlights-column">
+        @for (item of i18n.ui().about.highlights; track item.title; let idx = $index) {
+          <div class="highlight-card glass-panel">
+            <div class="highlight-icon-box">
+              @if (idx === 0) { <span>🎓</span> }
+              @else if (idx === 1) { <span>⚙️</span> }
+              @else { <span>🎯</span> }
+            </div>
+            <div class="highlight-content">
+              <h4 class="highlight-title">{{ item.title }}</h4>
+              <p class="highlight-desc">{{ item.desc }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

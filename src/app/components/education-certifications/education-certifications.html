@@ -1,0 +1,94 @@
+<section id="education" class="education-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-tag">
+        <span>🎓</span>
+        <span>{{ i18n.ui().education.badge }}</span>
+      </div>
+      <h2 class="section-title gradient-text">{{ i18n.ui().education.title }}</h2>
+      <p class="section-subtitle">{{ i18n.ui().education.subtitle }}</p>
+    </div>
+
+    <div class="education-grid">
+      <!-- Left Column: Degree & Academic Pathway -->
+      <div class="edu-card glass-panel">
+        <div class="edu-card-head">
+          <span class="sec-label mono">{{ i18n.ui().education.eduTitle }}</span>
+          <span class="period-badge mono">2022 – 2027</span>
+        </div>
+
+        @for (edu of i18n.education; track edu.id) {
+          <div class="edu-item">
+            <h3 class="degree-title">{{ i18n.isFrench() ? edu.degree.fr : edu.degree.en }}</h3>
+            
+            <div class="institution-meta">
+              <span class="school-name">{{ edu.institution }}</span>
+              <span class="school-loc mono">📍 {{ edu.location }}</span>
+            </div>
+
+            <div class="status-indicator-box">
+              <span class="status-dot"></span>
+              <span class="status-text mono">{{ i18n.isFrench() ? edu.status.fr : edu.status.en }}</span>
+            </div>
+
+            <ul class="edu-bullets">
+              @for (point of (i18n.isFrench() ? edu.details.fr : edu.details.en); track point) {
+                <li class="bullet-item">
+                  <span class="bullet-point mono">▹</span>
+                  <span>{{ point }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- Right Column: Certifications & Languages -->
+      <div class="creds-column">
+        <!-- Certifications Box -->
+        <div class="creds-card glass-panel">
+          <div class="creds-card-head">
+            <span class="sec-label mono">{{ i18n.ui().education.certTitle }}</span>
+          </div>
+
+          <div class="certs-list">
+            @for (cert of i18n.certifications; track cert.id) {
+              <div class="cert-item">
+                <div class="cert-icon-box">
+                  <span>📜</span>
+                </div>
+                <div class="cert-info">
+                  <h4 class="cert-name">{{ cert.title }}</h4>
+                  <span class="cert-domain mono">{{ i18n.isFrench() ? cert.category.fr : cert.category.en }}</span>
+                  @if (cert.note) {
+                    <span class="cert-note mono">{{ i18n.isFrench() ? cert.note.fr : cert.note.en }}</span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Spoken Languages Box -->
+        <div class="creds-card glass-panel">
+          <div class="creds-card-head">
+            <span class="sec-label mono">{{ i18n.ui().education.langTitle }}</span>
+          </div>
+
+          <div class="languages-list">
+            @for (lang of i18n.spokenLanguages; track lang.name.en) {
+              <div class="language-row">
+                <div class="lang-text">
+                  <span class="lang-title">{{ i18n.isFrench() ? lang.name.fr : lang.name.en }}</span>
+                  <span class="lang-desc">{{ i18n.isFrench() ? lang.level.fr : lang.level.en }}</span>
+                </div>
+                <span class="badge-prof mono">{{ lang.proficiencyBadge }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

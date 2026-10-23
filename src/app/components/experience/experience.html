@@ -1,0 +1,65 @@
+<section id="experience" class="experience-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-tag">
+        <span>💼</span>
+        <span>{{ i18n.ui().experience.badge }}</span>
+      </div>
+      <h2 class="section-title gradient-text">{{ i18n.ui().experience.title }}</h2>
+      <p class="section-subtitle">{{ i18n.ui().experience.subtitle }}</p>
+    </div>
+
+    <!-- Experiences List -->
+    <div class="internships-list">
+      @for (job of i18n.internships; track job.id) {
+        <article class="experience-card glass-panel">
+          <!-- Card Header -->
+          <div class="card-head">
+            <div class="role-company-group">
+              <span class="company-badge mono">{{ job.company }}</span>
+              <h3 class="role-title">{{ i18n.isFrench() ? job.role.fr : job.role.en }}</h3>
+            </div>
+
+            <div class="meta-badge-group">
+              <span class="period-pill mono">
+                {{ i18n.isFrench() ? job.period.fr : job.period.en }}
+              </span>
+              <span class="location-pill mono">
+                📍 {{ job.location }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="experience-summary">
+            {{ i18n.isFrench() ? job.description.fr : job.description.en }}
+          </p>
+
+          <!-- Key Contributions List -->
+          <div class="achievements-section">
+            <h4 class="section-micro-heading mono">{{ i18n.ui().experience.responsibilitiesTitle }}</h4>
+            <ul class="achievements-list">
+              @for (item of (i18n.isFrench() ? job.achievements.fr : job.achievements.en); track item) {
+                <li class="achievement-item">
+                  <span class="bullet mono">▹</span>
+                  <span class="achievement-text">{{ item }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Tech Stack Tags -->
+          <div class="tech-stack-row">
+            <span class="stack-label mono">{{ i18n.ui().experience.techStackTitle }}</span>
+            <div class="tags-container">
+              @for (tech of job.techStack; track tech) {
+                <span class="tech-chip mono">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

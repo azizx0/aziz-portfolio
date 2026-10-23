@@ -1,0 +1,81 @@
+<section id="skills" class="skills-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-tag">
+        <span>⚡</span>
+        <span>{{ i18n.ui().skills.badge }}</span>
+      </div>
+      <h2 class="section-title gradient-text">{{ i18n.ui().skills.title }}</h2>
+      <p class="section-subtitle">{{ i18n.ui().skills.subtitle }}</p>
+    </div>
+
+    <!-- Quick Overview Bar: Languages & Frameworks -->
+    <div class="quick-overview-grid">
+      <!-- Languages Bar -->
+      <div class="overview-box glass-panel">
+        <div class="overview-header">
+          <span class="overview-title mono">&lt;code&gt; {{ i18n.ui().skills.languagesLabel }}</span>
+        </div>
+        <div class="chips-row">
+          @for (lang of coreLanguages; track lang) {
+            <span class="chip-item mono">{{ lang }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Frameworks Bar -->
+      <div class="overview-box glass-panel">
+        <div class="overview-header">
+          <span class="overview-title mono">&lt;frameworks&gt; {{ i18n.ui().skills.frameworksLabel }}</span>
+        </div>
+        <div class="chips-row">
+          @for (fw of coreFrameworks; track fw) {
+            <span class="chip-item mono highlight-chip">{{ fw }}</span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="category-filter-bar">
+      <button 
+        type="button" 
+        (click)="setFilter('all')" 
+        class="filter-pill"
+        [class.active]="selectedCategory() === 'all'">
+        {{ i18n.isFrench() ? 'Tous les Domaines' : 'All Domains' }}
+      </button>
+      @for (cat of i18n.skillCategories; track cat.id) {
+        <button 
+          type="button" 
+          (click)="setFilter(cat.id)" 
+          class="filter-pill"
+          [class.active]="selectedCategory() === cat.id">
+          {{ i18n.isFrench() ? cat.title.fr : cat.title.en }}
+        </button>
+      }
+    </div>
+
+    <!-- 5 Core Skill Category Cards Grid -->
+    <div class="categories-grid">
+      @for (cat of filteredCategories(); track cat.id) {
+        <div class="category-card glass-panel">
+          <div class="cat-top">
+            <span class="cat-icon">{{ cat.icon }}</span>
+            <h3 class="cat-title">{{ i18n.isFrench() ? cat.title.fr : cat.title.en }}</h3>
+          </div>
+
+          <div class="skills-badges-list">
+            @for (item of cat.items; track item.name) {
+              <div class="skill-badge-item" [class.highlighted]="item.highlighted">
+                <span class="badge-dot"></span>
+                <span class="badge-name">{{ item.name }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

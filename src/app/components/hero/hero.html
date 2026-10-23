@@ -1,0 +1,155 @@
+<section id="hero" class="hero-section">
+  <!-- Subtle ambient glow background -->
+  <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+  <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+
+  <div class="container hero-container">
+    <div class="hero-content">
+      <!-- PFE Status Pill -->
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span class="status-pill-text mono">{{ i18n.ui().hero.pfeBadge }}</span>
+      </div>
+
+      <!-- Main Headline with Mohamed Aziz Loueti -->
+      <div class="hero-header-group">
+        <span class="hero-greeting">{{ i18n.ui().hero.greeting }}</span>
+        <h1 class="hero-name">{{ i18n.personal.fullName }}</h1>
+        <h2 class="hero-title gradient-text">{{ i18n.ui().hero.headline }}</h2>
+      </div>
+
+      <!-- Introduction paragraph -->
+      <p class="hero-summary">
+        {{ i18n.ui().hero.summary }}
+      </p>
+
+      <!-- Key Metadata Row (Location & School) -->
+      <div class="meta-row mono">
+        <div class="meta-item">
+          <span class="meta-icon">📍</span>
+          <span>{{ i18n.personal.location }}</span>
+        </div>
+        <div class="meta-divider">&bull;</div>
+        <div class="meta-item">
+          <span class="meta-icon">🎓</span>
+          <span>ESPRIT (2022–2027)</span>
+        </div>
+      </div>
+
+      <!-- Primary Action Buttons -->
+      <div class="hero-actions">
+        <button type="button" (click)="scrollTo('projects')" class="btn btn-primary">
+          <span>{{ i18n.ui().hero.ctaProjects }}</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <button type="button" (click)="scrollTo('contact')" class="btn btn-cyan-outline">
+          <span>{{ i18n.ui().hero.ctaContact }}</span>
+        </button>
+
+        <a [href]="i18n.personal.githubUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary github-btn" aria-label="GitHub Profile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Visual Architectural Showcase & Profile Portrait -->
+    <div class="hero-visual">
+      <!-- Professional Portrait Card -->
+      <div class="portrait-card glass-panel">
+        <div class="portrait-wrapper">
+          <div class="portrait-ambient-glow" aria-hidden="true"></div>
+
+          <div class="portrait-frame">
+            @if (!imageError()) {
+              <img 
+                src="assets/images/profile.png" 
+                alt="Mohamed Aziz Loueti - Full-Stack Developer & DevOps" 
+                class="portrait-photo"
+                (error)="onImageError()" />
+            } @else {
+              <div class="portrait-fallback">
+                <span class="fallback-monogram mono">MAL</span>
+                <span class="fallback-role mono">{{ i18n.isFrench() ? 'Génie Logiciel &bull; ESPRIT' : 'Software Engineering &bull; ESPRIT' }}</span>
+              </div>
+            }
+            <div class="portrait-glass-overlay"></div>
+          </div>
+
+          <!-- Floating Badges on Portrait -->
+          <div class="floating-chip top-chip mono">
+            <span class="status-dot"></span>
+            <span>Full-Stack &bull; DevOps</span>
+          </div>
+
+          <div class="floating-chip bottom-chip mono">
+            <span class="chip-icon">🎓</span>
+            <span>ESPRIT (2022–2027)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Card (Terminal/IDE Theme) -->
+      <div class="code-card glass-panel">
+        <div class="code-topbar">
+          <div class="window-controls">
+            <span class="control-dot red"></span>
+            <span class="control-dot yellow"></span>
+            <span class="control-dot green"></span>
+          </div>
+          <span class="code-filename mono">engineer-profile.ts</span>
+          <span class="badge-mini mono">ESPRIT-SE</span>
+        </div>
+
+        <div class="code-content mono">
+          <div class="code-line">
+            <span class="keyword">const</span> <span class="variable">candidate</span> = &#123;
+          </div>
+          <div class="code-line indent">
+            <span class="property">name</span>: <span class="string">"Mohamed Aziz Loueti"</span>,
+          </div>
+          <div class="code-line indent">
+            <span class="property">degree</span>: <span class="string">"{{ i18n.isFrench() ? 'Génie Logiciel (ESPRIT)' : 'Software Engineering (ESPRIT)' }}"</span>,
+          </div>
+          <div class="code-line indent">
+            <span class="property">graduationTrack</span>: <span class="string">"2022–2027"</span>,
+          </div>
+          <div class="code-line indent">
+            <span class="property">specialization</span>: [<span class="string">"Full-Stack"</span>, <span class="string">"DevOps"</span>, <span class="string">"Cloud"</span>],
+          </div>
+          <div class="code-line indent">
+            <span class="property">currentStatus</span>: <span class="string">"{{ i18n.isFrench() ? 'Recherche Stage PFE' : 'Open to PFE Internship' }}"</span>,
+          </div>
+          <div class="code-line indent">
+            <span class="property">frameworks</span>: [<span class="string">"Angular"</span>, <span class="string">"Spring Boot"</span>, <span class="string">"Node.js"</span>],
+          </div>
+          <div class="code-line indent">
+            <span class="property">devops</span>: [<span class="string">"Docker"</span>, <span class="string">"Kubernetes"</span>, <span class="string">"Jenkins"</span>, <span class="string">"GitLab CI/CD"</span>],
+          </div>
+          <div class="code-line indent">
+            <span class="property">location</span>: <span class="string">"{{ i18n.personal.location }}"</span>
+          </div>
+          <div class="code-line">
+            &#125;;
+          </div>
+        </div>
+
+        <!-- Tech Stack Pill Row -->
+        <div class="code-footer">
+          <span class="footer-label mono">{{ i18n.isFrench() ? 'ÉCOSYSTÈME PRINCIPAL :' : 'CORE ECOSYSTEM:' }}</span>
+          <div class="tech-tags-list">
+            @for (tech of coreTech; track tech) {
+              <span class="tech-tag mono">{{ tech }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-line">
+          <span class="brand-mark mono">&lt;AL/&gt;</span>
+          <span class="brand-name">{{ i18n.personal.fullName }}</span>
+        </div>
+        <p class="brand-tagline">
+          {{ i18n.ui().footer.headline }} &bull; {{ i18n.personal.location }}
+        </p>
+      </div>
+
+      <!-- Quick Social & Contact Channels (Real facts only: GitHub, Email, Phone) -->
+      <div class="footer-channels">
+        <a [href]="i18n.personal.githubUrl" target="_blank" rel="noopener noreferrer" class="channel-link mono" aria-label="GitHub Profile">
+          <span>GitHub</span>
+        </a>
+        <span class="sep">&bull;</span>
+        <a [href]="'mailto:' + i18n.personal.email" class="channel-link mono" aria-label="Send Email">
+          <span>Email</span>
+        </a>
+        <span class="sep">&bull;</span>
+        <a [href]="'tel:' + i18n.personal.phoneRaw" class="channel-link mono" aria-label="Call Phone">
+          <span>{{ i18n.personal.phone }}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright mono">
+        &copy; {{ currentYear }} {{ i18n.personal.fullName }}. {{ i18n.ui().footer.rights }}
+      </p>
+
+      <button type="button" (click)="scrollToTop()" class="back-to-top-btn mono" aria-label="Scroll back to top">
+        <span>↑ {{ i18n.ui().footer.backToTop }}</span>
+      </button>
+    </div>
+  </div>
+</footer>

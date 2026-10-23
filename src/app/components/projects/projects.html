@@ -1,0 +1,164 @@
+<section id="projects" class="projects-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-tag">
+        <span>🚀</span>
+        <span>{{ i18n.ui().projects.badge }}</span>
+      </div>
+      <h2 class="section-title gradient-text">{{ i18n.ui().projects.title }}</h2>
+      <p class="section-subtitle">{{ i18n.ui().projects.subtitle }}</p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-cards-grid">
+      @for (project of i18n.projects; track project.id) {
+        <article class="project-card glass-panel" [class.in-progress-card]="project.isInProgress">
+          <!-- Card Top Bar -->
+          <div class="card-topbar">
+            <span class="category-pill mono">
+              {{ i18n.isFrench() ? project.categoryLabel.fr : project.categoryLabel.en }}
+            </span>
+
+            <div class="status-indicator-tag" [class.in-progress]="project.isInProgress">
+              <span class="status-dot"></span>
+              <span class="status-label mono">
+                {{ i18n.isFrench() ? project.status.fr : project.status.en }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Project Title & Description -->
+          <div class="card-content">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-description">
+              {{ i18n.isFrench() ? project.shortDesc.fr : project.shortDesc.en }}
+            </p>
+          </div>
+
+          <!-- Key Features Bullet List -->
+          <div class="features-preview">
+            <ul class="features-list">
+              @for (feat of (i18n.isFrench() ? project.features.fr : project.features.en); track feat) {
+                <li class="feature-item">
+                  <span class="feature-bullet mono">✓</span>
+                  <span>{{ feat }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- DevOps / Testing Badges (if present, like Skill2Job) -->
+          @if (project.devopsTools && project.devopsTools.length > 0) {
+            <div class="tools-block">
+              <span class="tools-heading mono">{{ i18n.ui().projects.devopsLabel }}</span>
+              <div class="chips-wrap">
+                @for (tool of project.devopsTools; track tool) {
+                  <span class="tool-chip devops mono">{{ tool }}</span>
+                }
+                @for (tool of project.testingTools; track tool) {
+                  <span class="tool-chip testing mono">{{ tool }}</span>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Tech Stack -->
+          <div class="tech-pills-row">
+            <span class="tech-row-label mono">{{ i18n.ui().projects.stackLabel }}</span>
+            <div class="chips-wrap">
+              @for (tech of project.technologies; track tech) {
+                <span class="tech-pill mono">{{ tech }}</span>
+              }
+            </div>
+          </div>
+
+          <!-- Action Button: Open Architectural Details -->
+          <div class="card-footer">
+            <button 
+              type="button" 
+              (click)="openModal(project)" 
+              class="btn btn-cyan-outline w-full"
+              aria-haspopup="dialog">
+              <span>{{ i18n.isFrench() ? 'Détails du Projet' : 'Project Breakdown' }}</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+
+  <!-- Accessible Architectural Details Modal -->
+  @if (selectedProjectModal(); as p) {
+    <div class="modal-backdrop" (click)="closeModal()" role="presentation">
+      <div 
+        class="modal-dialog glass-panel" 
+        (click)="$event.stopPropagation()"
+        role="dialog" 
+        aria-modal="true" 
+        [attr.aria-label]="p.title">
+        
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="category-pill mono">
+              {{ i18n.isFrench() ? p.categoryLabel.fr : p.categoryLabel.en }}
+            </span>
+            <h3 class="modal-project-title">{{ p.title }}</h3>
+          </div>
+          <button 
+            type="button" 
+            (click)="closeModal()" 
+            class="modal-close-btn" 
+            aria-label="Close details">
+            ✕
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-section">
+            <h4 class="modal-sec-title mono">{{ i18n.isFrench() ? 'PRÉSENTATION' : 'OVERVIEW' }}</h4>
+            <p class="modal-sec-text">{{ i18n.isFrench() ? p.fullDesc.fr : p.fullDesc.en }}</p>
+          </div>
+
+          <div class="modal-section">
+            <h4 class="modal-sec-title mono">{{ i18n.isFrench() ? 'CARACTÉRISTIQUES PRINCIPALES' : 'KEY HIGHLIGHTS' }}</h4>
+            <ul class="modal-features-list">
+              @for (feat of (i18n.isFrench() ? p.features.fr : p.features.en); track feat) {
+                <li class="modal-feat-item">
+                  <span class="feat-icon mono">⚡</span>
+                  <span>{{ feat }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h4 class="modal-sec-title mono">{{ i18n.ui().projects.stackLabel }}</h4>
+            <div class="chips-wrap">
+              @for (tech of p.technologies; track tech) {
+                <span class="tech-pill mono">{{ tech }}</span>
+              }
+              @if (p.devopsTools) {
+                @for (d of p.devopsTools; track d) {
+                  <span class="tool-chip devops mono">{{ d }}</span>
+                }
+              }
+              @if (p.testingTools) {
+                @for (t of p.testingTools; track t) {
+                  <span class="tool-chip testing mono">{{ t }}</span>
+                }
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" (click)="closeModal()" class="btn btn-secondary">
+            <span>{{ i18n.isFrench() ? 'Fermer' : 'Close' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</section>

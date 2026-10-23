@@ -1,0 +1,145 @@
+<section id="contact" class="contact-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-tag">
+        <span>📬</span>
+        <span>{{ i18n.ui().contact.badge }}</span>
+      </div>
+      <h2 class="section-title gradient-text">{{ i18n.ui().contact.title }}</h2>
+      <p class="section-subtitle">{{ i18n.ui().contact.subtitle }}</p>
+    </div>
+
+    <!-- Contact Grid -->
+    <div class="contact-grid">
+      <!-- Direct Contact Cards Panel -->
+      <div class="contact-info-panel glass-panel">
+        <h3 class="panel-heading">{{ i18n.isFrench() ? 'Coordonnées Directes' : 'Direct Channels' }}</h3>
+
+        <div class="contact-cards-list">
+          <!-- Email Card -->
+          <div class="channel-card">
+            <div class="channel-icon-box">
+              <span>✉️</span>
+            </div>
+            <div class="channel-details">
+              <span class="channel-label mono">EMAIL</span>
+              <a [href]="'mailto:' + i18n.personal.email" class="channel-value mono">{{ i18n.personal.email }}</a>
+            </div>
+            <button 
+              type="button" 
+              (click)="copyEmail()" 
+              class="copy-button mono" 
+              [class.copied]="emailCopied()"
+              [attr.aria-label]="i18n.ui().contact.copyEmail">
+              {{ emailCopied() ? '✓ ' + (i18n.isFrench() ? 'Copié' : 'Copied') : (i18n.isFrench() ? 'Copier' : 'Copy') }}
+            </button>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="channel-card">
+            <div class="channel-icon-box">
+              <span>📞</span>
+            </div>
+            <div class="channel-details">
+              <span class="channel-label mono">{{ i18n.isFrench() ? 'TÉLÉPHONE' : 'PHONE' }}</span>
+              <a [href]="'tel:' + i18n.personal.phoneRaw" class="channel-value mono">{{ i18n.personal.phone }}</a>
+            </div>
+            <a [href]="'tel:' + i18n.personal.phoneRaw" class="action-link-pill mono">
+              {{ i18n.ui().contact.callAction }}
+            </a>
+          </div>
+
+          <!-- GitHub Card -->
+          <div class="channel-card">
+            <div class="channel-icon-box">
+              <span>🐙</span>
+            </div>
+            <div class="channel-details">
+              <span class="channel-label mono">GITHUB</span>
+              <a [href]="i18n.personal.githubUrl" target="_blank" rel="noopener noreferrer" class="channel-value mono">
+                {{ i18n.personal.githubUrl }}
+              </a>
+            </div>
+            <a [href]="i18n.personal.githubUrl" target="_blank" rel="noopener noreferrer" class="action-link-pill mono">
+              ↗
+            </a>
+          </div>
+
+          <!-- Location Card -->
+          <div class="channel-card">
+            <div class="channel-icon-box">
+              <span>📍</span>
+            </div>
+            <div class="channel-details">
+              <span class="channel-label mono">{{ i18n.isFrench() ? 'LOCALISATION' : 'LOCATION' }}</span>
+              <span class="channel-value">{{ i18n.personal.location }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PFE Status Callout Box -->
+        <div class="pfe-callout-box">
+          <div class="callout-head">
+            <span class="status-dot"></span>
+            <span class="callout-title mono">{{ i18n.ui().contact.calloutTitle }}</span>
+          </div>
+          <p class="callout-desc">
+            {{ i18n.ui().contact.calloutText }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Functional Email Drafter Panel (Direct Mailto Action - No fake forms) -->
+      <div class="email-drafter-panel glass-panel">
+        <h3 class="panel-heading">{{ i18n.isFrench() ? 'Rédiger un Email Direct' : 'Direct Email Composer' }}</h3>
+        <p class="drafter-sub">
+          {{ i18n.isFrench() 
+            ? 'Préparez votre message ici pour l\'ouvrir directement dans votre logiciel de messagerie préféré (sans formulaire factice).'
+            : 'Compose your subject and message to launch directly in your default email client with guaranteed delivery.' }}
+        </p>
+
+        <form (ngSubmit)="openEmailClient()" class="drafter-form">
+          <div class="input-group">
+            <label for="email-to" class="field-label mono">TO / DESTINATAIRE</label>
+            <input 
+              type="text" 
+              id="email-to" 
+              [value]="i18n.personal.email" 
+              readonly 
+              class="field-input readonly mono" />
+          </div>
+
+          <div class="input-group">
+            <label for="email-subject" class="field-label mono">{{ i18n.isFrench() ? 'SUJET' : 'SUBJECT' }}</label>
+            <input 
+              type="text" 
+              id="email-subject" 
+              [(ngModel)]="subjectInput" 
+              name="subjectInput"
+              class="field-input" 
+              [placeholder]="i18n.isFrench() ? 'Ex: Opportunité de Stage PFE / Échange' : 'e.g. PFE Internship / Engineering Discussion'" />
+          </div>
+
+          <div class="input-group">
+            <label for="email-body" class="field-label mono">{{ i18n.isFrench() ? 'MESSAGE' : 'MESSAGE BODY' }}</label>
+            <textarea 
+              id="email-body" 
+              [(ngModel)]="messageInput" 
+              name="messageInput"
+              rows="4" 
+              class="field-textarea" 
+              [placeholder]="i18n.isFrench() ? 'Détails concernant votre projet ou proposition...' : 'Details about your role or project...'"></textarea>
+          </div>
+
+          <div class="drafter-actions">
+            <button type="submit" class="btn btn-primary w-full">
+              <span>📧 {{ i18n.ui().contact.emailAction }}</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,101 @@
+<header class="navbar" [class.scrolled]="isScrolled()">
+  <div class="nav-container">
+    <!-- Brand Logo / Name -->
+    <a (click)="scrollTo('hero')" class="brand-logo" role="button" tabindex="0" aria-label="Mohamed Aziz Loueti - Home">
+      <span class="logo-mark mono">&lt;AL/&gt;</span>
+      <div class="brand-text">
+        <span class="logo-name">AZIZ LOUETI</span>
+        <span class="logo-role">FULL-STACK &bull; DEVOPS</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links" aria-label="Main Navigation">
+      <button type="button" (click)="scrollTo('about')" class="nav-link">
+        {{ i18n.ui().nav.about }}
+      </button>
+      <button type="button" (click)="scrollTo('skills')" class="nav-link">
+        {{ i18n.ui().nav.skills }}
+      </button>
+      <button type="button" (click)="scrollTo('experience')" class="nav-link">
+        {{ i18n.ui().nav.experience }}
+      </button>
+      <button type="button" (click)="scrollTo('projects')" class="nav-link">
+        {{ i18n.ui().nav.projects }}
+      </button>
+      <button type="button" (click)="scrollTo('education')" class="nav-link">
+        {{ i18n.ui().nav.education }}
+      </button>
+      <button type="button" (click)="scrollTo('contact')" class="nav-link">
+        {{ i18n.ui().nav.contact }}
+      </button>
+    </nav>
+
+    <!-- Nav Actions -->
+    <div class="nav-actions">
+      <!-- PFE Status Badge -->
+      <div class="pfe-badge" title="Seeking PFE Internship">
+        <span class="status-dot"></span>
+        <span class="badge-text mono">{{ i18n.ui().nav.pfeStatus }}</span>
+      </div>
+
+      <!-- Language Switcher Button (EN / FR) -->
+      <button 
+        type="button" 
+        (click)="toggleLang()" 
+        class="lang-switch-btn"
+        [attr.aria-label]="i18n.ui().nav.switchLangAria">
+        <span class="lang-opt" [class.active]="!i18n.isFrench()">EN</span>
+        <span class="lang-divider">/</span>
+        <span class="lang-opt" [class.active]="i18n.isFrench()">FR</span>
+      </button>
+
+      <!-- Mobile Menu Hamburger Button -->
+      <button 
+        type="button" 
+        (click)="toggleMobileMenu()" 
+        class="hamburger-btn" 
+        [class.open]="mobileMenuOpen()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  @if (mobileMenuOpen()) {
+    <div class="mobile-backdrop" (click)="closeMobileMenu()" aria-hidden="true"></div>
+    <div class="mobile-drawer" role="dialog" aria-modal="true">
+      <nav class="mobile-links">
+        <button type="button" (click)="scrollTo('about')" class="mobile-link">
+          {{ i18n.ui().nav.about }}
+        </button>
+        <button type="button" (click)="scrollTo('skills')" class="mobile-link">
+          {{ i18n.ui().nav.skills }}
+        </button>
+        <button type="button" (click)="scrollTo('experience')" class="mobile-link">
+          {{ i18n.ui().nav.experience }}
+        </button>
+        <button type="button" (click)="scrollTo('projects')" class="mobile-link">
+          {{ i18n.ui().nav.projects }}
+        </button>
+        <button type="button" (click)="scrollTo('education')" class="mobile-link">
+          {{ i18n.ui().nav.education }}
+        </button>
+        <button type="button" (click)="scrollTo('contact')" class="mobile-link">
+          {{ i18n.ui().nav.contact }}
+        </button>
+      </nav>
+
+      <div class="mobile-footer">
+        <button type="button" (click)="toggleLang()" class="btn btn-secondary w-full">
+          <span>🌐</span>
+          <span>{{ i18n.isFrench() ? 'Passer en English (EN)' : 'Passer en Français (FR)' }}</span>
+        </button>
+      </div>
+    </div>
+  }
+</header>

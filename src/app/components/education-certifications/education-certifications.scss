@@ -1,0 +1,223 @@
+.education-section {
+  position: relative;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.edu-card, .creds-card {
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-color: rgba(6, 182, 212, 0.2);
+
+  &:hover {
+    border-color: rgba(6, 182, 212, 0.35);
+  }
+}
+
+.edu-card-head, .creds-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+
+  .sec-label {
+    font-size: 0.8rem;
+    color: var(--accent-cyan-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .period-badge {
+    font-size: 0.78rem;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+  }
+}
+
+.edu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .degree-title {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  .institution-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+
+    .school-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-cyan-light);
+    }
+
+    .school-loc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+  }
+
+  .status-indicator-box {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.85rem;
+    background: rgba(6, 182, 212, 0.06);
+    border: 1px dashed rgba(6, 182, 212, 0.3);
+    border-radius: var(--radius-sm);
+    width: fit-content;
+
+    .status-text {
+      font-size: 0.82rem;
+      color: var(--accent-cyan-light);
+      font-weight: 500;
+    }
+  }
+
+  .edu-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+
+      .bullet-point {
+        color: var(--accent-cyan-light);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+/* Right Column */
+.creds-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.certs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.95rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: rgba(6, 182, 212, 0.05);
+  }
+
+  .cert-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: rgba(6, 182, 212, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .cert-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    .cert-name {
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .cert-domain {
+      font-size: 0.78rem;
+      color: var(--accent-blue);
+    }
+
+    .cert-note {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+  }
+}
+
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.language-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.95rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+
+  .lang-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    .lang-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .lang-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+  }
+
+  .badge-prof {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--accent-cyan-light);
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+  }
+}
